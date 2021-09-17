@@ -1,8 +1,6 @@
 const path = require('path')
 
 module.exports = {
-    // entry: './src/index.js',
-    // 多入口打包
     entry: {
         app: './src/index.js',
     },
@@ -11,6 +9,15 @@ module.exports = {
         filename: '[name].js'
     },
     mode: 'production',
+    // 自动监听打包
+    watch: true,
+    watchOptions: {
+        ignored: /node_modules/,
+        // 监听到改变后多少ms开始打包
+        aggregateTimeout: 300,
+        // 1s询问1000次需不需要打包
+        poll: 1000
+    },
     module: {
         rules: [{
             test: /.js$/,
