@@ -25,6 +25,15 @@ module.exports = {
                 'css-loader',
                 'postcss-loader',
                 'less-loader',
+                {
+                    loader: "px2rem-loader",
+                    options: {
+                        // 1rem 就是 75px
+                        remUnit: 75,
+                        // px 转rem后面的小数点位数
+                        remPrecision: 8
+                    }
+                }
             ]
         }, {
             test: /.(png|jpg|jpeg|gif)$/,
