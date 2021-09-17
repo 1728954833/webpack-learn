@@ -6,5 +6,5 @@ const a = React.createElement('div')
 console.log(a)
 
 const img = document.createElement('img')
-img.src = 'path'
+img.src = path
 document.body.append(img)

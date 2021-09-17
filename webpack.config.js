@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CSSMini = require('css-minimizer-webpack-plugin')
+const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -10,7 +12,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[chunkhash:8].js'
     },
-    mode: 'development',
+    mode: 'production',
     module: {
         rules: [{
             test: /.js$/,
@@ -32,11 +34,30 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name]_[contenthash:8].css'
+        }),
+        new htmlWebpackPlugin({
+            template: path.join(__dirname, 'src/index.html'),
+            filename: 'index.html',
+            // 使用哪个模块
+            chunks: ['app'],
+            // 是否自动导入模块
+            inject: true,
+            minify: {
+                html5: true,
+                collapseWhitespace: true,
+                preserveLineBreaks: false,
+                minifyCSS: true,
+                minifyJS: true,
+                removeComments: true
+            }
         })
     ],
+    // CSS打包优化
+    optimization: {
+        // 在开发环境下开启
+        minimize: true,
+        minimizer: [
+            new CSSMini(),
+        ],
+    }
 }
-
-// 三种文件指纹
-// 1. hash: 和整个项目构建有关, 只要项目文件有修改整个项目构建的hash就会更改
-// 2. chunkHash: 和webpack打包chunk有关, 不同entry生成不同的值
-// 3. contentHash: 根据文件内容定义hash, 文件内容变化就会变
