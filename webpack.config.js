@@ -75,5 +75,16 @@ module.exports = {
         minimizer: [
             new CSSMini(),
         ],
-    }
+    },
+    // 开发环境 cheap-module-eval-source-map
+    // 生产环境 cheap-module-source-map
+    devtool: 'inline-source-map'
 }
+
+
+// source map
+// 1. eval: 使用eval包裹代码
+// 2. source map: 产生map文件
+// 3. cheap: 不包含列信息
+// 4. inline: 将map作为DataUrl嵌入
+// 5. module: 包含loader的sourcemap
