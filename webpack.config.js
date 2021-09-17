@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CSSMini = require('css-minimizer-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -50,7 +51,8 @@ module.exports = {
                 minifyJS: true,
                 removeComments: true
             }
-        })
+        }),
+        new CleanWebpackPlugin()
     ],
     // CSS打包优化
     optimization: {
