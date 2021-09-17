@@ -1,5 +1,5 @@
 import React from "react";
-import './index.css'
+import './index.less'
 
 const a = React.createElement('div')
 console.log(a)
