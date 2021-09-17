@@ -1,0 +1,10 @@
+{
+    "presets": [
+        // 添加babel预设
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+    // "plugins": [
+    //     "@babel/proposal-class-properties"
+    // ]
+}
